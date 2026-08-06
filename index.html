@@ -81,6 +81,15 @@
           <span id="all-time-total" class="stat-value">₹0</span>
         </div>
 
+        <!-- Payment Section -->
+        <div class="payment-section">
+          <button id="pay-btn" class="pay-btn">
+            <span class="pay-icon">💳</span>
+            <span class="pay-text">Pay via UPI</span>
+            <span class="pay-amount">₹<span id="pay-amount">0</span></span>
+          </button>
+        </div>
+
         <div class="recent-list">
           <h4>Recent Entries</h4>
           <ul id="recent-entries"></ul>
@@ -88,6 +97,17 @@
 
         <button id="export-btn" class="secondary-btn">Export Data</button>
         <button id="clear-btn" class="danger-btn">Clear All Data</button>
+      </div>
+
+      <!-- History Panel -->
+      <div class="history-panel">
+        <div class="history-header">
+          <h3>📋 Full History</h3>
+          <button id="history-sort-btn" class="sort-btn" title="Sort by date">↓ Newest</button>
+        </div>
+        <div id="history-list" class="history-list">
+          <div class="history-empty">No entries yet</div>
+        </div>
       </div>
     </main>
   </section>
