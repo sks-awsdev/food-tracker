@@ -1,9 +1,11 @@
 const PRICE = 40;
 const STORAGE_KEY = 'foodExpenseData';
+const UPI_ID = 'revu963@okaxis';
 
 let currentDate = new Date();
 let selectedDate = null;
 let data = {};
+let historySortAsc = false;
 
 // Load data from localStorage
 function loadData() {
@@ -127,6 +129,7 @@ function updateStats() {
   document.getElementById('lunch-days').textContent = lunchDays;
   document.getElementById('skip-days').textContent = skipDays;
   document.getElementById('all-time-total').textContent = `₹${allTime}`;
+  document.getElementById('pay-amount').textContent = monthTotal;
 
   const list = document.getElementById('recent-entries');
   list.innerHTML = '';
@@ -142,6 +145,50 @@ function updateStats() {
       list.appendChild(li);
     });
   }
+
+  // Update history
+  updateHistory();
+}
+
+function updateHistory() {
+  const historyList = document.getElementById('history-list');
+  const entries = Object.entries(data).map(([key, value]) => ({ key, value }));
+
+  if (entries.length === 0) {
+    historyList.innerHTML = '<div class="history-empty">No entries yet</div>';
+    return;
+  }
+
+  // Sort based on toggle
+  if (historySortAsc) {
+    entries.sort((a, b) => a.key.localeCompare(b.key));
+  } else {
+    entries.sort((a, b) => b.key.localeCompare(a.key));
+  }
+
+  historyList.innerHTML = '';
+  entries.forEach(({ key, value }) => {
+    const div = document.createElement('div');
+    div.className = 'history-item';
+    if (value === 40) div.classList.add('lunch-entry');
+    else if (value === 0) div.classList.add('skip-entry');
+
+    const displayDate = formatDisplayDate(key);
+    const icon = value === 40 ? '🍽' : '—';
+    const status = value === 40 ? 'Lunch' : 'Skipped';
+
+    div.innerHTML = `
+      <div class="history-info">
+        <span class="history-icon">${icon}</span>
+        <div class="history-details">
+          <div class="history-date">${displayDate}</div>
+          <div class="history-status">${status}</div>
+        </div>
+      </div>
+      <div class="history-amount">₹${value}</div>
+    `;
+    historyList.appendChild(div);
+  });
 }
 
 function openModal(key, day) {
@@ -166,6 +213,11 @@ function setValue(value) {
   saveData();
   renderCalendar();
   closeModal();
+}
+
+function generateUPILink(amount) {
+  const upiLink = `upi://pay?pa=${UPI_ID}&pn=DailyFood&am=${amount}&tr=foodexpense-${Date.now()}`;
+  return upiLink;
 }
 
 // Event listeners
@@ -214,6 +266,36 @@ document.getElementById('clear-btn').addEventListener('click', () => {
     saveData();
     renderCalendar();
   }
+});
+
+// Pay button
+document.getElementById('pay-btn').addEventListener('click', () => {
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  const prefix = `${year}-${String(month + 1).padStart(2, '0')}-`;
+
+  let monthTotal = 0;
+  Object.entries(data).forEach(([key, value]) => {
+    if (key.startsWith(prefix)) {
+      monthTotal += value;
+    }
+  });
+
+  if (monthTotal === 0) {
+    alert('No expenses to pay for this month');
+    return;
+  }
+
+  const upiLink = generateUPILink(monthTotal);
+  window.location.href = upiLink;
+});
+
+// History sort button
+document.getElementById('history-sort-btn').addEventListener('click', () => {
+  historySortAsc = !historySortAsc;
+  const btn = document.getElementById('history-sort-btn');
+  btn.textContent = historySortAsc ? '↑ Oldest' : '↓ Newest';
+  updateHistory();
 });
 
 // Keyboard
