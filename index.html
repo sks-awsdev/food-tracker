@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Expense Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Landing Page -->
+  <section id="landing" class="landing">
+    <div class="landing-content">
+      <div class="logo">✦</div>
+      <h1>Daily Food</h1>
+      <p class="tagline">Track your lunch expenses with elegance</p>
+      <p class="price-badge">₹40 / day</p>
+      <div class="scroll-hint">
+        <span>Scroll to begin</span>
+        <div class="arrow">↓</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main App -->
+  <section id="app" class="app">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="app-logo">✦</span>
+        <h2>Food Tracker</h2>
+      </div>
+      <div class="header-right">
+        <button id="theme-toggle" class="icon-btn" title="Toggle theme">◐</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <!-- Calendar Side -->
+      <div class="calendar-panel">
+        <div class="calendar-header">
+          <button id="prev-month" class="nav-btn">‹</button>
+          <h3 id="month-year">August 2026</h3>
+          <button id="next-month" class="nav-btn">›</button>
+        </div>
+        <div class="weekdays">
+          <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+        </div>
+        <div id="calendar-grid" class="calendar-grid"></div>
+        <div class="legend">
+          <span class="legend-item"><i class="dot lunch"></i> Lunch ₹40</span>
+          <span class="legend-item"><i class="dot skip"></i> Skip ₹0</span>
+          <span class="legend-item"><i class="dot none"></i> Not set</span>
+        </div>
+      </div>
+
+      <!-- Stats Side -->
+      <div class="stats-panel">
+        <div class="stat-card primary">
+          <span class="stat-label">This Month</span>
+          <span id="month-total" class="stat-value">₹0</span>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-label">Days Logged</span>
+            <span id="days-logged" class="stat-value-sm">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Lunch Days</span>
+            <span id="lunch-days" class="stat-value-sm">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Skipped</span>
+            <span id="skip-days" class="stat-value-sm">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">All Time Total</span>
+          <span id="all-time-total" class="stat-value">₹0</span>
+        </div>
+
+        <div class="recent-list">
+          <h4>Recent Entries</h4>
+          <ul id="recent-entries"></ul>
+        </div>
+
+        <button id="export-btn" class="secondary-btn">Export Data</button>
+        <button id="clear-btn" class="danger-btn">Clear All Data</button>
+      </div>
+    </main>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modal-date">Select</h3>
+      <p class="modal-sub">Did you take lunch?</p>
+      <div class="modal-actions">
+        <button id="btn-lunch" class="action-btn lunch-btn">
+          <span class="btn-icon">🍽</span>
+          Lunch
+          <span class="btn-price">₹40</span>
+        </button>
+        <button id="btn-skip" class="action-btn skip-btn">
+          <span class="btn-icon">—</span>
+          Skip
+          <span class="btn-price">₹0</span>
+        </button>
+      </div>
+      <button id="btn-clear-day" class="text-btn">Clear this day</button>
+      <button id="modal-close" class="modal-close">✕</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
