@@ -1,6 +1,7 @@
-# Daily Food Expense Tracker
+# MintyLedger
+### *by Sujan KS*
 
-A clean, macOS-inspired web app to track your daily lunch expenses (₹40/day).  
+A clean, macOS-inspired web app to track your daily expenses (₹40/day for lunch).  
 Built for **GitHub Pages** — pure HTML/CSS/JS, no backend needed.
 
 ## Features
@@ -19,7 +20,7 @@ Built for **GitHub Pages** — pure HTML/CSS/JS, no backend needed.
 
 ### 1. Create a new repository
 1. Go to [github.com/new](https://github.com/new)
-2. Name it something like `food-tracker` or `daily-food`
+2. Name it something like `minty-ledger` or `expense-tracker`
 3. Keep it **Public**
 4. Do **not** initialize with README (we already have one)
 5. Click **Create repository**
@@ -38,11 +39,11 @@ You have three files:
 
 **Option B – Git command line**
 ```bash
-git clone https://github.com/YOUR_USERNAME/food-tracker.git
-cd food-tracker
+git clone https://github.com/YOUR_USERNAME/minty-ledger.git
+cd minty-ledger
 # copy the three files into this folder
 git add .
-git commit -m "Initial commit - Food Expense Tracker"
+git commit -m "Initial commit - MintyLedger by Sujan KS"
 git push origin main
 ```
 
@@ -57,10 +58,10 @@ git push origin main
 After 30–60 seconds your site will be live at:
 
 ```
-https://YOUR_USERNAME.github.io/food-tracker/
+https://YOUR_USERNAME.github.io/minty-ledger/
 ```
 
-(Replace `YOUR_USERNAME` and `food-tracker` with your actual values)
+(Replace `YOUR_USERNAME` and `minty-ledger` with your actual values)
 
 ## Tips
 
@@ -69,4 +70,4 @@ https://YOUR_USERNAME.github.io/food-tracker/
 - Works offline after first load (you can add a service worker later if you want).
 - To customize the price, open `script.js` and change `const PRICE = 40;`
 
-Enjoy tracking! ✦
+Enjoy tracking with MintyLedger! ✦
